@@ -6,6 +6,8 @@ from engine import train_one_epoch, evaluate, validation
 from data_gen import CellTrainDataset
 from model import get_instance_segmentation_model
 import numpy as np
+
+
 def get_transform(train):
     transforms = []
     # converts the image, a PIL image, into a PyTorch Tensor
@@ -35,7 +37,8 @@ data_loader_valid = torch.utils.data.DataLoader(
     dataset_valid, batch_size=2, shuffle=False, num_workers=4,
     collate_fn=utils.collate_fn)
 
-device = torch.device('cuda:8') if torch.cuda.is_available() else torch.device('cpu')
+device = torch.device('cuda:8') \
+    if torch.cuda.is_available() else torch.device('cpu')
 
 num_classes = 2
 model = get_instance_segmentation_model(num_classes)
@@ -54,15 +57,22 @@ lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer,
 num_epochs = 100
 model.load_state_dict(torch.load("model.pkl"), strict=False)
 for epoch in range(num_epochs):
-    
+
     # train for one epoch, printing every 10 iterations
-    train_one_epoch(model, optimizer, data_loader_train, device, epoch, print_freq=10)
+    train_one_epoch(
+        model,
+        optimizer,
+        data_loader_train,
+        device,
+        epoch,
+        print_freq=10
+        )
 
     # update the learning rate
     lr_scheduler.step()
-    loss = validation(model, data_loader_valid, device, epoch, print_freq = 10)
+    loss = validation(model, data_loader_valid, device, epoch, print_freq=10)
     print("valid loss:", loss)
-    
+
     if loss < min:
         min = loss
         torch.save(model.state_dict(), 'model.pkl')
