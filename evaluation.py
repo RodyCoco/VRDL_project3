@@ -35,8 +35,8 @@ def get_transform(train):
     return T.Compose(transforms)
 
 if __name__ == "__main__":
-    dataset_test =
-    CellTestDataset('../cell_data/test_images', get_transform(train=False))
+    dataset_test = \
+    CellTestDataset('dataset/test', get_transform(train=False))
     result_to_json = []
     model = get_instance_segmentation_model(num_classes=2)
     model.load_state_dict(torch.load("model.pkl"), strict=False)
@@ -80,9 +80,9 @@ if __name__ == "__main__":
             det_box_info["score"] = float(scores[i])
             det_box_info["category_id"] = 1
 
-            det_box_info["segmentation"] =
+            det_box_info["segmentation"] = \
             encode(np.asfortranarray(masks[i]))[0]
-            det_box_info["segmentation"]["counts"] =
+            det_box_info["segmentation"]["counts"] = \
             det_box_info["segmentation"]["counts"].decode('ascii')
             result_to_json.append(det_box_info)
 

@@ -5,24 +5,16 @@ import torch.utils.data
 import shutil
 from PIL import Image
 
-root = "../cell_data/train"
-root_dir = os.listdir(root)
-print(root_dir)
+if not os.path.exists("dataset/train_images"):
+    os.mkdir("dataset/train_images")
 
-file = open("../cell_data/train_img_id.txt", "a")
-for s in root_dir:
-    if "TCGA" in s:
-        file.write(s+"\n")
+train_img_path = "dataset/train"
+train_img_dir = os.listdir(train_img_path)
+for img_name in train_img_dir:
+    if img_name[-3] != "png":
+        continue
+    shutil.copyfile(
+        os.path.join(train_img_path, img_name, "images", img_name+".png"),
+        os.path.join("dataset/train_images", img_name+".png"),
+        )
 
-if not os.path.exists("../cell_data/train/images"):
-    os.mkdir("../cell_data/train/images")
-if not os.path.exists("../cell_data/train/masks"):
-    os.mkdir("../cell_data/train/masks")
-
-
-file = open("../cell_data/train_img_id.txt", "r")
-
-for img_name in file.readlines():
-    img_name = img_name[:-1]
-    img_path = os.path.join(root, img_name, "images", f"{img_name}.png")
-    shutil.copyfile(img_path, os.path.join(root, "images", f"{img_name}.png"))

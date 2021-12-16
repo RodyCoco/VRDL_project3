@@ -20,8 +20,8 @@ def get_transform(train):
     return T.Compose(transforms)
 
 # use the PennFudan dataset and defined transformations
-dataset_train = CellTrainDataset('../cell_data', get_transform(train=True))
-dataset_valid = CellTrainDataset('../cell_data', get_transform(train=False))
+dataset_train = CellTrainDataset('dataset', get_transform(train=True))
+dataset_valid = CellTrainDataset('dataset', get_transform(train=False))
 
 torch.manual_seed(1)
 indices = torch.randperm(len(dataset_train)).tolist()
@@ -55,7 +55,7 @@ lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer,
 
 
 num_epochs = 100
-model.load_state_dict(torch.load("model.pkl"), strict=False)
+
 for epoch in range(num_epochs):
 
     # train for one epoch, printing every 10 iterations
