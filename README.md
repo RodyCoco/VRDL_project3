@@ -45,6 +45,7 @@ python main.py
 ```
 
 ## Evaluation
+Put .pkl file under root directory.
 
 To evaluate my model, run:
 
