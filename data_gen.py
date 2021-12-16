@@ -11,7 +11,8 @@ class CellTrainDataset(torch.utils.data.Dataset):
     def __init__(self, root, transforms=None):
         self.root = root
         self.transforms = transforms
-        self.imgs = list(sorted(os.listdir(os.path.join(root, "train_images"))))
+        self.imgs = \
+            list(sorted(os.listdir(os.path.join(root, "train_images"))))
         list(sorted(os.listdir(os.path.join(root, "train_images"))))
 
     def __getitem__(self, idx):
