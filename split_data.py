@@ -24,8 +24,5 @@ file = open("../cell_data/train_img_id.txt", "r")
 
 for img_name in file.readlines():
     img_name = img_name[:-1]
-    img_path = os.path.join(root, img_name, "images",f"{img_name}.png")
-    shutil.copyfile(img_path, os.path.join(root, "images",f"{img_name}.png"))
-# for img_name in os.listdir("cell_data/train"):
-#     mask_dir = os.path.join(root, img_name, "masks")
-#     shutil.copytree("data/train/masks", mask_dir)
+    img_path = os.path.join(root, img_name, "images", f"{img_name}.png")
+    shutil.copyfile(img_path, os.path.join(root, "images", f"{img_name}.png"))
