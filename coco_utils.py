@@ -225,11 +225,13 @@ def get_coco(root, image_set, transforms, mode='instances'):
     PATHS = {
         "train": (
             "train2017",
-            os.path.join("annotations",
-            anno_file_template.format(mode, "train"))),
+            os.path.join(
+                "annotations",
+                anno_file_template.format(mode, "train"))),
         "val": (
-            "val2017", os.path.join("annotations",
-            anno_file_template.format(mode, "val"))),
+            "val2017", os.path.join(
+                "annotations",
+                anno_file_template.format(mode, "val"))),
     }
 
     t = [ConvertCocoPolysToMask()]
