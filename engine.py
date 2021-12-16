@@ -24,7 +24,7 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq):
         warmup_iters = min(1000, len(data_loader) - 1)
 
         lr_scheduler =\
-        utils.warmup_lr_scheduler(optimizer, warmup_iters, warmup_factor)
+            utils.warmup_lr_scheduler(optimizer, warmup_iters, warmup_factor)
 
     for images, targets in metric_logger.log_every(
             data_loader, print_freq, header):
@@ -123,7 +123,7 @@ def evaluate(model, data_loader, device):
         outputs = model(image)
 
         outputs = \
-        [{k: v.to(cpu_device) for k, v in t.items()} for t in outputs]
+            [{k: v.to(cpu_device) for k, v in t.items()} for t in outputs]
         model_time = time.time() - model_time
 
         res = {
