@@ -262,9 +262,11 @@ def loadRes(self, resFile):
     assert set(annsImgIds) == (set(annsImgIds) & set(self.getImgIds())), \
         'Results do not correspond to current coco set'
     if 'caption' in anns[0]:
-        imgIds = set([img['id'] for img in res.dataset['images']]) & set([ann['image_id'] for ann in anns])
+        imgIds = \
+            set([img['id'] for img in res.dataset['images']]) &
+            set([ann['image_id'] for ann in anns])
         res.dataset['images'] = \
-        [img for img in res.dataset['images'] if img['id'] in imgIds]
+            [img for img in res.dataset['images'] if img['id'] in imgIds]
         for id, ann in enumerate(anns):
             ann['id'] = id + 1
     elif 'bbox' in anns[0] and not anns[0]['bbox'] == []:
@@ -311,7 +313,7 @@ def evaluate(self):
     if p.useSegm is not None:
         p.iouType = 'segm' if p.useSegm == 1 else 'bbox'
         print('useSegm (deprecated) is not None. Running {} evaluation'
-        .format(p.iouType))
+              .format(p.iouType))
     # print('Evaluate annotation type *{}*'.format(p.iouType))
     p.imgIds = list(np.unique(p.imgIds))
     if p.useCats:
