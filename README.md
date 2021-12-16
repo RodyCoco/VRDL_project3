@@ -22,9 +22,19 @@ ${ROOT}
 RTX A5000
 
 ## Preprocessing
+First you should delete all .ipynb_checkpoints file. 
 Before train the model, run this command to reorganize the directory of image:
 ```
 python split_data.py
+```
+And you will get following directory
+```
+${ROOT}
+  +- dataset
+  |  +- test
+  |  +- train
+  |  +- train_images
+  |  +- test_img_ids.json
 ```
 ## Training
 
