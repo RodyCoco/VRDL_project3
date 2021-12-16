@@ -22,7 +22,7 @@ ${ROOT}
 RTX A5000
 
 ## Preprocessing
-First you should delete all .ipynb_checkpoints file
+First you should delete all .ipynb_checkpoints file. 
 Before train the model, run this command to reorganize the directory of image:
 ```
 python split_data.py
