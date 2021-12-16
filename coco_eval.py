@@ -47,8 +47,12 @@ class CocoEvaluator(object):
 
     def synchronize_between_processes(self):
         for iou_type in self.iou_types:
-            self.eval_imgs[iou_type] = np.concatenate(self.eval_imgs[iou_type], 2)
-            create_common_coco_eval(self.coco_eval[iou_type], self.img_ids, self.eval_imgs[iou_type])
+            self.eval_imgs[iou_type] =
+            np.concatenate(self.eval_imgs[iou_type], 2)
+            create_common_coco_eval(
+                self.coco_eval[iou_type],
+                self.img_ids,
+                self.eval_imgs[iou_type])
 
     def accumulate(self):
         for coco_eval in self.coco_eval.values():
@@ -109,7 +113,8 @@ class CocoEvaluator(object):
             labels = prediction["labels"].tolist()
 
             rles = [
-                mask_util.encode(np.array(mask[0, :, :, np.newaxis], order="F"))[0]
+                mask_util.encode(
+                    np.array(mask[0, :, :, np.newaxis], order="F"))[0]
                 for mask in masks
             ]
             for rle in rles:
@@ -257,7 +262,8 @@ def loadRes(self, resFile):
     assert set(annsImgIds) == (set(annsImgIds) & set(self.getImgIds())), \
         'Results do not correspond to current coco set'
     if 'caption' in anns[0]:
-        imgIds = set([img['id'] for img in res.dataset['images']]) & set([ann['image_id'] for ann in anns])
+        imgIds = set([img['id'] for img in
+        res.dataset['images']]) & set([ann['image_id'] for ann in anns])
         res.dataset['images'] = [img for img in res.dataset['images'] if img['id'] in imgIds]
         for id, ann in enumerate(anns):
             ann['id'] = id + 1
