@@ -10,26 +10,27 @@ pip install -r requirements.txt
 
 ## Dataset
 Please put images directory as following
-'''
+```
 ${ROOT}
-  +- test_images
-  |  +- 2007_000629.png
-  |  +- 2007_001175.png
-  |  +- ...
-  +- train_images
-  |  +- 2007_000033.png
-  |  +- 2007_000042.png
-  |  +- ...
-
+  +- dataset
+  |  +- test
+  |  +- train
+  |  +- test_img_ids.json
+```
 ## Hardware
 
 RTX A5000
 
+## Preprocessing
+Before train the model, run this command to reorganize the directory of image:
+```
+python split_data.py
+```
 ## Training
 
 To train the model, run this command:
 
-```train
+```
 python main.py
 ```
 
