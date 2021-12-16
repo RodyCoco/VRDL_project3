@@ -8,6 +8,19 @@ To install requirements:
 pip install -r requirements.txt
 ```
 
+## Dataset
+Please put images directory as following
+'''
+${ROOT}
+  +- test_images
+  |  +- 2007_000629.png
+  |  +- 2007_001175.png
+  |  +- ...
+  +- train_images
+  |  +- 2007_000033.png
+  |  +- 2007_000042.png
+  |  +- ...
+
 ## Hardware
 
 RTX A5000
